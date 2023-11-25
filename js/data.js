@@ -46,7 +46,6 @@ const rePaintDiscussed = () => {
   discussedButton.classList.add('img-filters__button--active');
 
   renderPhotos(elements);
-  console.log(elements);
 };
 
 const debounceDefault = debounce(rePaintDefault);
@@ -54,8 +53,18 @@ const debounceRandom = debounce(rePaintRandom);
 const debounceDiscussed = debounce(rePaintDiscussed);
 
 
-const filteredPhotos = initGalleryFilters(photos, 'default');
-renderPhotos(filteredPhotos);
+const filteredPhotosResaut = initGalleryFilters(photos, 'default');
+
+const filteredPhotos = [];
+
+const checkDataPhotos = () => {
+  if (filteredPhotosResaut === undefined) {
+    return filteredPhotos;
+  }
+  return filteredPhotosResaut;
+};
+
+renderPhotos(checkDataPhotos());
 
 defaultButton.addEventListener('click', () => {
   debounceDefault();
